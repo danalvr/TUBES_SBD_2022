@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -40,7 +41,19 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|max:50',
+            'price' => 'required',
+            'publisher' => 'required',
+            'author' => 'required',
+            'stock_amount' => 'required',
+            'supplier_id' => 'required',
+            'publication_year' => 'required',
+        ]);
+
+        Book::create($validatedData);
+
+        return redirect('/book-stock')->with('success', 'New book has been added!');
     }
 
     /**

@@ -7,33 +7,64 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form>
+    <form action="/book-stock" method="post">
+        @csrf
         <div class="card-body">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" placeholder="Title" required>
+                <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" id="title" placeholder="Title" value="{{ old('title') }}" required>
+                <div class="invalid-feedback">
+                    @error('title')
+                        {{ $message }}
+                    @enderror
+                </div>
             </div>
             <div class="form-group">
                 <label for="price">Price (Rp)</label>
-                <input type="number" class="form-control" id="price" placeholder="price" required>
+                <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="price" value="{{ old('price') }}" required>
+                <div class="invalid-feedback">
+                    @error('price')
+                        {{ $message }}
+                    @enderror
+                </div>
             </div>
             <div class="form-group">
                 <label for="publisher">Publisher</label>
-                <input type="text" class="form-control" id="publisher" placeholder="Publisher" required>
+                <input type="text" name="publisher" class="form-control @error('publisher') is-invalid @enderror" id="publisher" placeholder="Publisher" value="{{ old('publisher') }}" required>
+                <div class="invalid-feedback">
+                    @error('publisher')
+                        {{ $message }}
+                    @enderror
+                </div>
             </div>
             <div class="form-group">
                 <label for="author">Author</label>
-                <input type="text" class="form-control" id="author" placeholder="Author" required>
+                <input type="text" name="author" class="form-control" @error('author') is-invalid @enderror id="author" placeholder="Author" value="{{ old('author') }}" required>
+                <div class="invalid-feedback">
+                    @error('author')
+                        {{ $message }}
+                    @enderror
+                </div>
             </div>
             <div class="form-group">
                 <label for="stock">Stock Amount</label>
-                <input type="number" class="form-control" id="stock" placeholder="stock" required>
+                <input type="number" name="stock_amount" class="form-control" @error('stock') is-invalid @enderror id="stock" placeholder="stock" value="{{ old('stock_amount') }}" required>
+                <div class="invalid-feedback">
+                    @error('stock')
+                        {{ $message }}
+                    @enderror
+                </div>
             </div>
             <div class="form-group">
                 <label for="publication-year">Publication Year</label>
-                <input type="date" class="form-control" id="publication-year" placeholder="Publication year" required>
+                <input type="date" name="publication_year" class="form-control @error('publication_year') is-invalid @enderror" id="publication-year" placeholder="Publication year" value="{{ old('publication_year') }}" required>
+                <div class="invalid-feedback">
+                    @error('publication_year')
+                        {{ $message }}
+                    @enderror
+                </div>
             </div>
-            <input type="hidden" value="2">
+            <input name="supplier_id" type="hidden" value="2">
         </div>
         <!-- /.card-body -->
 

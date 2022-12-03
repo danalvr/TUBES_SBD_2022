@@ -1,5 +1,10 @@
 @extends('dashboard.layouts.main')
 @section('container')
+@if (session()->has('success'))
+    <div class="alert alert-success col-lg" role="alert">
+        {{ session('success') }}
+    </div>
+@endif
 <div class="card">
     <div class="card-header">
       <h1 class="card-title col-md-9 font-weight-bold text-secondary" style="font-size: 40px">Data Stock of Books</h1>
