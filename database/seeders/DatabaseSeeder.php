@@ -52,5 +52,25 @@ class DatabaseSeeder extends Seeder
             'password' => '$2a$12$IW.4ncypZhcVnAuf0S5PyuPpyLxBF9Q2yHnpTeeIEE8RLkh.CEMN6',
             'level_id' => 3
         ]);
+
+        Book::create([
+            'title' => 'Naruto The last Movie',
+            'price' => 150000,
+            'publisher' => 'Shonen Jump',
+            'author' => 'Masashi Kishimoto',
+            'stock_amount' => 10,
+            'publication_year' => '2022-12-01',
+            'supplier_id' => 2,
+        ]);
+
+        Book::create([
+            'title' => 'One Piece',
+            'price' => 140000,
+            'publisher' => 'Shonen Jump',
+            'author' => 'Eiichiro Oda',
+            'stock_amount' => 20,
+            'publication_year' => '2022-08-02',
+            'supplier_id' => 2,
+        ]);
     }
 }
