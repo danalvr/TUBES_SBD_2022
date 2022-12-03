@@ -47,8 +47,10 @@
           <br>
           <li class="nav-item">
             <form action="/logout" method="post" class="nav-link">
-              <i class="fas fa-sign-out-alt"></i>
-              <button type="submit" class="bg-dark border-0" style="color: #A7ACB4">Logout</button>
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>
+                <button type="submit" class="bg-transparent border-0" style="color: #A7ACB4">Logout</button>
+              </p>
             </form>
           </li>
         </ul>

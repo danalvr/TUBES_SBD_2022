@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('dashboard.index');
 });
+Route::get('/book-stock', function () {
+    return view('dashboard.supplier.index');
+});
+Route::get('/transaction', function () {
+    return view('dashboard.cashier.index');
+});
