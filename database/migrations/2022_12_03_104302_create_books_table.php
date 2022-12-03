@@ -20,7 +20,7 @@ class CreateBooksTable extends Migration
             $table->string('publisher');
             $table->string('author');
             $table->integer('stock_amount');
-            $table->foreignId('id_user');
+            $table->foreignId('supplier_id');
             $table->date('publication_year');
             $table->timestamps();
         });
