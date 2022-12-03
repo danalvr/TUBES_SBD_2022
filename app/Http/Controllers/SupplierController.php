@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SupplierController extends Controller
 {
@@ -14,7 +15,11 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        return view('dashboard.supplier.index');
+        $books = DB::select('select * from books');
+
+        return view('dashboard.supplier.index', [
+            'books' => $books
+        ]);
     }
 
     /**
@@ -24,7 +29,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.supplier.create');
     }
 
     /**
