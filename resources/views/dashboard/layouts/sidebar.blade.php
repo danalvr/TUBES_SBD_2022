@@ -28,7 +28,7 @@
           </li>
           <li class="nav-header">Supplier</li>
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
+            <a href="book-stock" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Book Stock
@@ -37,7 +37,7 @@
           </li>
           <li class="nav-header">Cashier</li>
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
+            <a href="transaction" class="nav-link">
                 <i class="nav-icon fas fa-money-check"></i>
               <p>
                 Transaction
