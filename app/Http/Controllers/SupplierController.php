@@ -73,9 +73,12 @@ class SupplierController extends Controller
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function edit(Supplier $supplier)
+    public function edit($id)
     {
-        //
+        $book = DB::table('books')->where('id', $id)->first();
+        return view('dashboard.supplier.edit', [
+            'book' => $book,
+        ]);
     }
 
     /**
@@ -85,9 +88,21 @@ class SupplierController extends Controller
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Supplier $supplier)
+    public function update($id, Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|max:50',
+            'price' => 'required',
+            'publisher' => 'required',
+            'author' => 'required',
+            'stock_amount' => 'required',
+            'supplier_id' => 'required',
+            'publication_year' => 'required',
+        ]);
+        DB::table('books')
+        ->where('id', $id)
+        ->update($validatedData);
+        return redirect('/book-stock')->with('success', 'New book has been updated!');
     }
 
     /**
@@ -96,8 +111,9 @@ class SupplierController extends Controller
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Supplier $supplier)
+    public function destroy($id)
     {
-        //
+        DB::table('books')->where('id', '=', $id)->delete();
+        return redirect('/book-stock')->with('success', 'The book has been deleted!');
     }
 }
