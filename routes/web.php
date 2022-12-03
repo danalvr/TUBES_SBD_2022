@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SupplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,5 @@ Route::get('/book-stock', function () {
 Route::get('/transaction', function () {
     return view('dashboard.cashier.index');
 });
+
+Route::resource('/book-stock', SupplierController::class);
