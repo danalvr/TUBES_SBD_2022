@@ -2,18 +2,24 @@
 @section('container')
 <div class="card">
     <div class="card-header">
-      <h3 class="card-title">DataTable with default features</h3>
+      <h1 class="card-title col-md-9 font-weight-bold text-secondary" style="font-size: 40px">Data Stock of Books</h1>
+      <a href="#" class="card-title col-md-3">
+        <p class="btn btn-success">
+            <i class="fas fa-plus"></i>
+            Add Book
+        </p>
+      </a>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
       <table id="example1" class="table table-bordered table-striped">
         <thead>
         <tr>
-          <th>Rendering engine</th>
-          <th>Browser</th>
-          <th>Platform(s)</th>
-          <th>Engine version</th>
-          <th>CSS grade</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Publication years</th>
+          <th>Publisher</th>
+          <th>Action</th>
         </tr>
         </thead>
         <tbody>
