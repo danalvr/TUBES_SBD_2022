@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\LoginController;
@@ -20,9 +21,10 @@ Route::get('/login', [LoginController::class, 'index'])->name('login')->middlewa
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/', function () {
-    return view('dashboard.index');
-})->middleware('central_admin');
+// Route::get('/', function () {
+//     return view('dashboard.index');
+// })->middleware('central_admin');
+Route::get('/', [DashboardController::class, 'index'])->name('login')->middleware('central_admin');
 Route::get('/book-stock', function () {
     return view('dashboard.supplier.index');
 })->middleware('supplier_admin');
