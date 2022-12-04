@@ -85,7 +85,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Customer::create([
-            'customer_name' => 'Janses Wijaya',
+            'customer_name' => 'Jansen Wijaya',
             'address' => 'Jl. Merpati, No.4, Kalimantan Timur',
             'gender' => 1,
             'phone_number' => '085278567809',
