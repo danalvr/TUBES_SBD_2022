@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,4 @@ Route::get('/transaction', function () {
 });
 
 Route::resource('/book-stock', SupplierController::class);
+Route::resource('/transaction', TransactionController::class);

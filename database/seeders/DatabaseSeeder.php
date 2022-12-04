@@ -96,6 +96,7 @@ class DatabaseSeeder extends Seeder
             'customer_id' => 1,
             'cashier_id' => 3,
             'transaction_code' => 'TA513D1',
+            'quantity' => 3,
         ]);
 
         Transaction::create([
@@ -103,6 +104,7 @@ class DatabaseSeeder extends Seeder
             'customer_id' => 2,
             'cashier_id' => 3,
             'transaction_code' => 'TA513D2',
+            'quantity' => 2,
         ]);
     }
 }

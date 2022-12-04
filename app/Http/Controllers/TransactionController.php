@@ -15,10 +15,14 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        // $books = DB::select('select * from books');
+        $transaction = DB::table('transactions')
+            ->join('books', 'transactions.book_id', '=', 'books.id')
+            ->join('customers', 'transactions.customer_id', '=', 'customers.id')
+            ->select('books.*', 'customers.*', 'transactions.*')
+            ->get();
 
         return view('dashboard.cashier.index', [
-            // 'books' => $books
+            'transactions' => $transaction
         ]);
     }
 
