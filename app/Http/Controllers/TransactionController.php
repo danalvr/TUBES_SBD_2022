@@ -33,7 +33,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.cashier.create');
     }
 
     /**
