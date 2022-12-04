@@ -94,7 +94,20 @@ class TransactionController extends Controller
      */
     public function edit($transaction_code)
     {
-        //
+        $books = DB::select('select * from books');
+        $transaction = DB::table('transactions')
+        ->join('books', 'transactions.book_id', '=', 'books.id')
+        ->join('customers', 'transactions.customer_id', '=', 'customers.id')
+        ->select('books.*', 'customers.*', 'transactions.*')
+        ->where('transaction_code', $transaction_code)
+        ->first();
+
+        // dd($transaction);
+
+        return view('dashboard.cashier.edit', [
+            'transaction' => $transaction,
+            'books' => $books
+        ]);
     }
 
     /**
@@ -104,9 +117,34 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Transaction $transaction)
+    public function update($transaction_code, Request $request)
     {
-        //
+        $validatedDataCustomer = $request->validate([
+            'customer_name' => 'required',
+            'address' => 'required',
+            'gender' => 'required',
+            'phone_number' => 'required',
+        ]);
+
+        $validatedDataTransaction = $request->validate([
+            'book_id' => 'required',
+            'customer_id' => 'required',
+            'cashier_id' => 'required',
+            'transaction_code' => 'required',
+            'quantity' => 'required',
+        ]);
+
+        $customerId = $request->customer_id;
+
+        DB::table('customers')
+        ->where('id', $customerId)
+        ->update($validatedDataCustomer);
+
+        DB::table('transactions')
+        ->where('transaction_code', $transaction_code)
+        ->update($validatedDataTransaction);
+
+        return redirect('/transaction')->with('success', 'The Transaction has been updated!');
     }
 
     /**
@@ -115,8 +153,10 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Transaction $transaction)
+    public function destroy($transaction_code, Request $request)
     {
-        //
+        DB::table('transactions')->where('transaction_code', '=', $transaction_code)->delete();
+        DB::table('customers')->where('id', '=', $request->customer_id)->delete();
+        return redirect('/transaction')->with('success', 'The transaction has been deleted!');
     }
 }

@@ -21,10 +21,10 @@
         <thead>
         <tr>
           <th>Transaction Code</th>
+          <th>Customer</th>
           <th>Title</th>
           <th>Author</th>
           <th>Publisher</th>
-          <th>Customer</th>
           <th>Quantity</th>
           <th>Price</th>
           <th>Total</th>
@@ -35,10 +35,10 @@
         @foreach ($transactions as $transaction)
             <tr>
                 <td>{{ $transaction->transaction_code }}</td>
+                <td>{{ $transaction->customer_name }}</td>
                 <td>{{ $transaction->title }}</td>
                 <td>{{ $transaction->author }}</td>
                 <td>{{ $transaction->publisher }}</td>
-                <td>{{ $transaction->customer_name }}</td>
                 <td>{{ $transaction->quantity }}</td>
                 <td>{{ $transaction->price }}</td>
                 <td>{{ $transaction->quantity * $transaction->price }}</td>
@@ -54,6 +54,7 @@
                                 <form action="/transaction/{{ $transaction->transaction_code }}" method="post">
                                     @method('delete')
                                     @csrf
+                                    <input type="hidden" name="customer_id" value="{{ $transaction->customer_id }}">
                                     <button class="btn btn-danger border-0" onclick="return confirm('Are you sure?')">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
