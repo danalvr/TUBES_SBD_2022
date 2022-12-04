@@ -22,10 +22,12 @@ class DatabaseSeeder extends Seeder
             'level_name' => 'central admin',
             'description' => 'Have a full access on dashboard',
         ]);
+
         Level::create([
             'level_name' => 'Supplier Admin',
             'description' => 'Have access on suplier dashboard',
         ]);
+
         Level::create([
             'level_name' => 'Cashier Admin',
             'description' => 'Have access on cashier dashboard',
@@ -38,6 +40,7 @@ class DatabaseSeeder extends Seeder
             'password' => '$2a$12$IW.4ncypZhcVnAuf0S5PyuPpyLxBF9Q2yHnpTeeIEE8RLkh.CEMN6',
             'level_id' => 1
         ]);
+
         User::create([
             'name' => 'Budiman Santoso',
             'username' => 'budimans6',
@@ -45,6 +48,7 @@ class DatabaseSeeder extends Seeder
             'password' => '$2a$12$IW.4ncypZhcVnAuf0S5PyuPpyLxBF9Q2yHnpTeeIEE8RLkh.CEMN6',
             'level_id' => 2
         ]);
+
         User::create([
             'name' => 'Pipit Nurhayati',
             'username' => 'pipitnur08',
@@ -71,6 +75,34 @@ class DatabaseSeeder extends Seeder
             'stock_amount' => 20,
             'publication_year' => '2022-08-02',
             'supplier_id' => 2,
+        ]);
+
+        Customer::create([
+            'customer_name' => 'Ahmad Hendriko',
+            'address' => 'Jl. Cemara, No.12, Jakarta Selatan',
+            'gender' => 1,
+            'phone_number' => '081234567899',
+        ]);
+
+        Customer::create([
+            'customer_name' => 'Janses Wijaya',
+            'address' => 'Jl. Merpati, No.4, Kalimantan Timur',
+            'gender' => 1,
+            'phone_number' => '085278567809',
+        ]);
+
+        Transaction::create([
+            'book_id' => 1,
+            'customer_id' => 1,
+            'cashier_id' => 3,
+            'transaction_code' => 'TA513D1',
+        ]);
+
+        Transaction::create([
+            'book_id' => 2,
+            'customer_id' => 2,
+            'cashier_id' => 3,
+            'transaction_code' => 'TA513D2',
         ]);
     }
 }

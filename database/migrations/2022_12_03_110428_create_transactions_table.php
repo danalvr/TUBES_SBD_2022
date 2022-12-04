@@ -18,7 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->foreignId('customer_id');
             $table->foreignId('cashier_id');
             $table->string('transaction_code');
-            $table->bigInteger('total_price');
+            // $table->bigInteger('total_price');
             $table->timestamps();
         });
     }

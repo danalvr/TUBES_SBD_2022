@@ -17,7 +17,7 @@ class TransactionController extends Controller
     {
         // $books = DB::select('select * from books');
 
-        return view('dashboard.supplier.index', [
+        return view('dashboard.cashier.index', [
             // 'books' => $books
         ]);
     }
