@@ -3,68 +3,80 @@
 <!-- general form elements -->
 <div class="card card-secondary">
     <div class="card-header">
-        <h3 class="card-title">Add new book</h3>
+        <h3 class="card-title">Add new Transaction</h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form action="/book-stock" method="post">
+    <form action="/transaction" method="post">
         @csrf
         <div class="card-body">
             <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" id="title" placeholder="Title" value="{{ old('title') }}" required>
+                <label for="transaction_code">Transaction Code</label>
+                <input type="text" class="form-control" readonly value="{{ $transactionCode }}">
+                <input type="hidden" name="transaction_code" value="{{ $transactionCode }}">
+            </div>
+            <div class="form-group">
+                <label for="customer_name">Customer Name</label>
+                <input type="text" name="customer_name" class="form-control @error('customer_name') is-invalid @enderror" id="customer_name" placeholder="Customer Name" value="{{ old('customer_name') }}" required>
                 <div class="invalid-feedback">
-                    @error('title')
+                    @error('customer_name')
                         {{ $message }}
                     @enderror
                 </div>
             </div>
             <div class="form-group">
-                <label for="price">Price (Rp)</label>
-                <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="price" value="{{ old('price') }}" required>
+                <label for="address">Address</label>
+                <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" id="address" placeholder="Address" value="{{ old('address') }}" required>
                 <div class="invalid-feedback">
-                    @error('price')
+                    @error('address')
                         {{ $message }}
                     @enderror
                 </div>
             </div>
             <div class="form-group">
-                <label for="publisher">Publisher</label>
-                <input type="text" name="publisher" class="form-control @error('publisher') is-invalid @enderror" id="publisher" placeholder="Publisher" value="{{ old('publisher') }}" required>
+                <label for="phone_number">Phone number</label>
+                <input type="number" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" placeholder="Phone number" value="{{ old('phone_number') }}" required>
                 <div class="invalid-feedback">
-                    @error('publisher')
+                    @error('phone_number')
                         {{ $message }}
                     @enderror
                 </div>
             </div>
             <div class="form-group">
-                <label for="author">Author</label>
-                <input type="text" name="author" class="form-control" @error('author') is-invalid @enderror id="author" placeholder="Author" value="{{ old('author') }}" required>
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input @error('gender') is-invalid @enderror" type="radio" id="customRadio1" name="gender" value="{{ old('gender', 1) }}" required>
+                  <label for="customRadio1" class="custom-control-label">Male</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input @error('gender') is-invalid @enderror" type="radio" id="customRadio2" name="gender" value="{{ old('gender', 0) }}" required>
+                  <label for="customRadio2" class="custom-control-label">Female</label>
+                </div>
                 <div class="invalid-feedback">
-                    @error('author')
+                    @error('gender')
                         {{ $message }}
                     @enderror
                 </div>
             </div>
             <div class="form-group">
-                <label for="stock">Stock Amount</label>
-                <input type="number" name="stock_amount" class="form-control" @error('stock') is-invalid @enderror id="stock" placeholder="stock" value="{{ old('stock_amount') }}" required>
-                <div class="invalid-feedback">
-                    @error('stock')
-                        {{ $message }}
-                    @enderror
-                </div>
+                <label>Select</label>
+                <select class="form-control" name="book_id">
+                  <option selected disabled>-- Choose The book --</option>
+                  @foreach ($books as $book)
+                    <option value="{{ $book->id }}">{{ $book->title }}</option>
+                  @endforeach
+                </select>
             </div>
             <div class="form-group">
-                <label for="publication-year">Publication Year</label>
-                <input type="date" name="publication_year" class="form-control @error('publication_year') is-invalid @enderror" id="publication-year" placeholder="Publication year" value="{{ old('publication_year') }}" required>
+                <label for="quantity">Quantity</label>
+                <input type="number" name="quantity" class="form-control @error('quantity') is-invalid @enderror" id="quantity" placeholder="Quantity" value="{{ old('quantity') }}" required>
                 <div class="invalid-feedback">
-                    @error('publication_year')
+                    @error('quantity')
                         {{ $message }}
                     @enderror
                 </div>
             </div>
-            <input name="supplier_id" type="hidden" value="2">
+            <input name="cashier_id" type="hidden" value="3">
+            <input name="customer_id" type="hidden" value="{{ $customerId }}">
         </div>
         <!-- /.card-body -->
 
