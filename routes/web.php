@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,15 +16,19 @@ use App\Http\Controllers\TransactionController;
 |
 */
 
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+
 Route::get('/', function () {
     return view('dashboard.index');
-});
+})->middleware('central_admin');
 Route::get('/book-stock', function () {
     return view('dashboard.supplier.index');
-});
+})->middleware('supplier_admin');
 Route::get('/transaction', function () {
     return view('dashboard.cashier.index');
-});
+})->middleware('cashier_admin');
 
-Route::resource('/book-stock', SupplierController::class);
-Route::resource('/transaction', TransactionController::class);
+Route::resource('/book-stock', SupplierController::class)->middleware('supplier_admin');
+Route::resource('/transaction', TransactionController::class)->middleware('cashier_admin');
