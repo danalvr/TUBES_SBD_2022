@@ -14,6 +14,12 @@
             Add Book
         </p>
       </a>
+      <a href="/book-stock/history" class="card-title col-md-12">
+        <p class="btn btn-info" style="font-size: 20px">
+            <i class="fas fa-history"></i>
+            History
+        </p>
+      </a>
     </div>
     <!-- /.card-header -->
     <div class="card-body">

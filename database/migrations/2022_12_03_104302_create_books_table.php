@@ -22,6 +22,7 @@ class CreateBooksTable extends Migration
             $table->integer('stock_amount');
             $table->foreignId('supplier_id');
             $table->date('publication_year');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

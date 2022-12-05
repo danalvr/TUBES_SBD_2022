@@ -16,7 +16,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $books = DB::select('select * from books');
+        // $books = DB::select('select * from books');
+        $books = Book::all();
 
         return view('dashboard.supplier.index', [
             'books' => $books
@@ -113,7 +114,9 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('books')->where('id', '=', $id)->delete();
+        $book= Book::findOrFail($id);
+        $book->delete();
+        // DB::table('books')->where('id', '=', $id)->delete();
         return redirect('/book-stock')->with('success', 'The book has been deleted!');
     }
 }
