@@ -29,6 +29,8 @@ Route::get('/transaction', function () {
     return view('dashboard.cashier.index');
 })->middleware('cashier_admin');
 
-Route::resource('/book-stock', SupplierController::class)->middleware('supplier_admin');
 Route::get('/book-stock/history', [SupplierController::class, 'history'])->middleware('supplier_admin');
+Route::get('/book-stock/restore/{book:id}', [SupplierController::class, 'restore'])->middleware('supplier_admin');
+Route::delete('/book-stock/history/{book:id}', [SupplierController::class, 'deletePermanent'])->name('supplier')->middleware('supplier_admin');
+Route::resource('/book-stock', SupplierController::class)->middleware('supplier_admin');
 Route::resource('/transaction', TransactionController::class)->middleware('cashier_admin');

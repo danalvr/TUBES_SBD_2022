@@ -84,12 +84,12 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '081234567899',
         ]);
 
-        Customer::create([
-            'customer_name' => 'Jansen Wijaya',
-            'address' => 'Jl. Merpati, No.4, Kalimantan Timur',
-            'gender' => 1,
-            'phone_number' => '085278567809',
-        ]);
+        // Customer::create([
+        //     'customer_name' => 'Jansen Wijaya',
+        //     'address' => 'Jl. Merpati, No.4, Kalimantan Timur',
+        //     'gender' => 1,
+        //     'phone_number' => '085278567809',
+        // ]);
 
         Transaction::create([
             'book_id' => 1,
@@ -99,12 +99,12 @@ class DatabaseSeeder extends Seeder
             'quantity' => 3,
         ]);
 
-        Transaction::create([
-            'book_id' => 2,
-            'customer_id' => 2,
-            'cashier_id' => 3,
-            'transaction_code' => 'TA513D2',
-            'quantity' => 2,
-        ]);
+        // Transaction::create([
+        //     'book_id' => 2,
+        //     'customer_id' => 2,
+        //     'cashier_id' => 3,
+        //     'transaction_code' => 'TA513D2',
+        //     'quantity' => 2,
+        // ]);
     }
 }
