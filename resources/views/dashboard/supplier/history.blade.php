@@ -7,25 +7,7 @@
 @endif
 <div class="card">
     <div class="card-header">
-      <h1 class="card-title col-md-9 font-weight-bold text-secondary" style="font-size: 40px">Data Stock of Books</h1>
-      <a href="/book-stock/create" class="card-title col-md-3">
-        <p class="btn btn-success" style="font-size: 20px">
-            <i class="fas fa-plus"></i>
-            Add Book
-        </p>
-      </a>
-      <a href="/book-stock/history" class="card-title col-md-12">
-        <p class="btn btn-info" style="font-size: 20px">
-            <i class="fas fa-history"></i>
-            History
-        </p>
-      </a>
-      <form action="/book-stock" method="get">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Search.." name="search" value="{{ request('search') }}">
-          <button class="btn btn-secondary" type="submit">Search</button>
-        </div>
-      </form>
+      <h1 class="card-title col-md-9 font-weight-bold text-secondary" style="font-size: 40px">History Data Stock of Books</h1>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -54,12 +36,12 @@
                     <div class="container d-flex justify-content-center">
                         <div class="row">
                             <div class="col-md-6">
-                                <a class="btn btn-outline-warning" href="/book-stock/{{ $book->id }}/edit">
-                                    <i class="fas fa-edit"></i>
+                                <a class="btn btn-outline-info" href="/book-stock/restore/{{ $book->id }}">
+                                    <i class="fas fa-trash-restore"></i>
                                 </a>
                             </div>
                             <div class="col-md-6">
-                                <form action="/book-stock/{{ $book->id }}" method="post">
+                                <form action="/book-stock/history/{{ $book->id }}" method="post">
                                     @method('delete')
                                     @csrf
                                     <button class="btn btn-danger border-0" onclick="return confirm('Are you sure?')">

@@ -14,9 +14,18 @@ class SupplierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = DB::select('select * from books');
+        // $title = '';
+        $search = $request->search;
+        if (request('search')) {
+            // $books = Book::where('title', request('search'))->get();
+            $books = DB::select("select * from books where title = ?",[$search]);
+            // dd($books);
+        } else {
+            $books = DB::select('select * from books where deleted_at is NULL');
+        }
+        // $books = Book::all();
 
         return view('dashboard.supplier.index', [
             'books' => $books
@@ -113,6 +122,26 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
+        $book= Book::findOrFail($id);
+        $book->delete();
+        return redirect('/book-stock')->with('success', 'The book has been deleted!');
+    }
+
+    public function history(){
+        $books = Book::onlyTrashed()->get();
+
+        return view('dashboard.supplier.history', [
+            'books' => $books
+        ]);
+    }
+
+    public function restore($id){
+        $books = Book::onlyTrashed()->where('id', $id);
+        $books->restore();
+        return redirect('/book-stock')->with('success', 'The book has been restored!');
+    }
+
+    public function deletePermanent($id){
         DB::table('books')->where('id', '=', $id)->delete();
         return redirect('/book-stock')->with('success', 'The book has been deleted!');
     }
