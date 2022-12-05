@@ -14,17 +14,9 @@ class SupplierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        // $title = '';
-        $search = $request->search;
-        if (request('search')) {
-            // $books = Book::where('title', request('search'))->get();
-            $books = DB::select("select * from books where title = ?",[$search]);
-            // dd($books);
-        } else {
-            $books = DB::select('select * from books where deleted_at is NULL');
-        }
+        $books = DB::select('select * from books where deleted_at is NULL');
         // $books = Book::all();
 
         return view('dashboard.supplier.index', [

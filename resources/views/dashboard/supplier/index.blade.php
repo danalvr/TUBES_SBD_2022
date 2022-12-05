@@ -20,12 +20,6 @@
             History
         </p>
       </a>
-      <form action="/book-stock" method="get">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Search.." name="search" value="{{ request('search') }}">
-          <button class="btn btn-secondary" type="submit">Search</button>
-        </div>
-      </form>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
