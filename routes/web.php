@@ -21,9 +21,6 @@ Route::get('/login', [LoginController::class, 'index'])->name('login')->middlewa
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-// Route::get('/', function () {
-//     return view('dashboard.index');
-// })->middleware('central_admin');
 Route::get('/', [DashboardController::class, 'index'])->name('login')->middleware('central_admin');
 Route::get('/book-stock', function () {
     return view('dashboard.supplier.index');
@@ -33,4 +30,5 @@ Route::get('/transaction', function () {
 })->middleware('cashier_admin');
 
 Route::resource('/book-stock', SupplierController::class)->middleware('supplier_admin');
+Route::get('/book-stock/history', [SupplierController::class, 'history'])->middleware('supplier_admin');
 Route::resource('/transaction', TransactionController::class)->middleware('cashier_admin');

@@ -119,4 +119,12 @@ class SupplierController extends Controller
         // DB::table('books')->where('id', '=', $id)->delete();
         return redirect('/book-stock')->with('success', 'The book has been deleted!');
     }
+
+    public function history(){
+        $books = Book::all();
+
+        return view('dashboard.supplier.history', [
+            'books' => $books
+        ]);
+    }
 }
